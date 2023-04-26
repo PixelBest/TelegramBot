@@ -19,7 +19,7 @@ namespace TelegramBot
 
             if (message.Text != null)
             {
-                Console.WriteLine($"{message.Chat.FirstName} {message.Chat.LastName}    |    {message.Text}");
+                Console.WriteLine($"{message.Chat.FirstName} {message.Chat.LastName} {message.Chat.Location}   |    {message.Text}");
                 if (message.Text == "Сделать заявку")
                     await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите", replyMarkup: Buttons.GetButtons1());
                 else if (message.Text == "Показать на карте")
@@ -120,7 +120,6 @@ namespace TelegramBot
                 }
                 else if (message.Text != "Оставить данные")
                 {
-                    Console.WriteLine(message.Chat.Username.ToString());
                     await botClient.SendTextMessageAsync(message.Chat.Id, "Выбери", replyMarkup: Buttons.GetButtons());
                 }
             }
