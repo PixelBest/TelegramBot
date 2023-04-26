@@ -8,9 +8,9 @@ namespace TelegramBot
 {
     internal class User
     {
-        public static int Id { get; set; }
-        public static string? Phone { get; set; }
-        public static string? UserName { get; set; }
+        public int Id { get; set; }
+        public string? Phone { get; set; }
+        public string? UserName { get; set; }
 
         public User(string phone, string userName)
         {

@@ -18,6 +18,8 @@ namespace TelegramBot
     {
         private readonly static string token = "6104982128:AAFlG61y44DFOegDeIbslhSOSyEAK8WuU9U";
         public static TelegramBotClient? client;
+        public static string? phoneNumber;
+        public static string? userName;
 
         static void Main(string[] args)
         {
@@ -32,7 +34,14 @@ namespace TelegramBot
             if(update?.Type == UpdateType.Message && update.Message != null)
             {
                 await Up.Update(botClient, update, token);
-                Console.Write(update);
+                if (update?.Message?.Contact != null)
+                {
+                    phoneNumber = update.Message.Contact.PhoneNumber;
+                    userName = update?.Message?.Chat.Username;
+                    Writer.WriteCustomer();
+                    await Up.Gratitude(botClient, update, token);
+                }
+                /*Console.Write(update);*/
             }
         }
 

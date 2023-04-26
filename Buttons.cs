@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telegram.Bot;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace TelegramBot
@@ -30,9 +32,9 @@ namespace TelegramBot
                 KeyboardButton.WithRequestContact("Оставить контакт"),})
             {
                 ResizeKeyboard = true
+
             };
             return replyKeyboardMarkup11;
-
         }
 
         public static IReplyMarkup? GetButtons8()
