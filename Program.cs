@@ -22,9 +22,33 @@ namespace TelegramBot
         static void Main(string[] args)
         {
             client = new TelegramBotClient(token);
-            client.StartReceiving(Up.Update, Error.HandlePollingErrorAsync);
+            client.StartReceiving(HandleUpdateAsunc, HandlePollingErrorAsync);
             Console.ReadLine();
         }
 
+        private static async Task HandleUpdateAsunc(ITelegramBotClient botClient, Telegram.Bot.Types.Update update, CancellationToken token)
+        {
+            Console.WriteLine($"{update?.Message?.Chat.Username} | {update?.Message?.Text} | {update?.Message?.Contact?.PhoneNumber}");
+            if(update?.Type == UpdateType.Message && update.Message != null)
+            {
+                await Up.Update(botClient, update, token);
+                Console.Write(update);
+            }
+        }
+
+        public static Task HandlePollingErrorAsync(ITelegramBotClient botClient,
+                                     Exception exception,
+                                     CancellationToken cancellation)
+        {
+            var ErrorMessage = exception switch
+            {
+                ApiRequestException apiRequestException
+                    => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
+                _ => exception.ToString()
+            };
+
+            Console.WriteLine(ErrorMessage);
+            return Task.CompletedTask;
+        }
     }
 }

@@ -21,7 +21,6 @@ namespace TelegramBot
 
             if (message.Text != null)
             {
-                Console.WriteLine($"{update?.Message?.Chat.Username} | {update?.Message?.Text} | {update?.Message?.Contact?.PhoneNumber}");
                 if (message.Text == "Сделать заявку")
                     await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите", replyMarkup: Buttons.GetButtons1());
                 else if (message.Text == "Показать на карте")
@@ -131,9 +130,20 @@ namespace TelegramBot
                 {
                     data[5] = message.Text;
                     Order order = new Order(data[1], data[2], data[3], data[4], data[5], DateTime.Now.ToString());
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Заявка отправляется");
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Заявка отправлена, отсавьте номер чтобы связаться с нами", replyMarkup: Buttons.GetButtons9());
+                    /*await botClient.SendTextMessageAsync(message.Chat.Id, "Заявка отправляется");
+                    await botClient.SendTextMessageAsync(message.Chat.Id, "Заявка отправлена, отсавьте номер чтобы связаться с нами", replyMarkup: Buttons.GetButtons9());*/
                     Console.WriteLine($"{order.Gost} {order.Number} {order.Lenght1} {order.Lenght2} {order.Units} {order.Date} ");
+                    ReplyKeyboardMarkup replyKeyboardMarkup11 = new(new[]
+                            {
+                                KeyboardButton.WithRequestContact("Оставить контакт"),
+                            })
+                    {
+                        ResizeKeyboard = true
+                    };
+
+                    await botClient.SendTextMessageAsync(chatId: update.Message.Chat.Id,
+                                                         text: "Заявка отправлена менеджеру, поделитесь номером для связи с вами.",
+                                                         replyMarkup: replyKeyboardMarkup11);
                 }
                 else if (message.Text == "В тоннах")
                 {
