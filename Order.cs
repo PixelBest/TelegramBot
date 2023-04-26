@@ -14,7 +14,7 @@ namespace TelegramBot
         public string? Lenght1 { get; set; }
         public string? Lenght2 { get; set; }
         public string? Units { get; set; }
-        public string? Date { get; set; } = DateTime.Now.ToString();
+        public string? Date { get; set; }
         public Order(string? gost, string? number, string? lenght1, string? lenght2, string? units, string? date)
         {
             Gost = gost;
