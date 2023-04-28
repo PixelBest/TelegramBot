@@ -14,7 +14,7 @@ namespace TelegramBot
 {
     internal class Up
     {
-        public static string[] data = new string[7];
+        public static string[] data = new string[9];
         async public static Task Update(ITelegramBotClient botClient, Telegram.Bot.Types.Update update, CancellationToken token)
         {
             Message? message = update.Message;
@@ -41,99 +41,27 @@ namespace TelegramBot
                 }
                 else if (message.Text == "Под заказ")
                     await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите стандарт", replyMarkup: Buttons.GetButtons2());
-                else if (message.Text == "ГОСТ 9941-81")
+                else if (message.Text == "ГОСТ 9941-81" || message.Text == "ГОСТ 9940-81" || message.Text == "ТУ 14-3Р-55-2001")
                 {
                     data[1] = message.Text;
                     await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите марку", replyMarkup: Buttons.GetButtons4());
                 }
-                else if (message.Text == "ГОСТ 9940-81")
-                {
-                    data[1] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите марку", replyMarkup: Buttons.GetButtons4());
-                }
-                else if (message.Text == "ТУ 14-3Р-55-2001")
-                {
-                    data[1] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите марку", replyMarkup: Buttons.GetButtons5());
-                }
-                else if (message.Text == "08Х18Н10Т")
+                else if (message.Text == "08Х18Н10Т" || message.Text == "12Х18Н10Т" || message.Text == "08Х13" || message.Text == "10Х17Н13М2Т" || message.Text == "12Х13" || message.Text == "12Х18Н12Т")
                 {
                     data[2] = message.Text;
                     await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите диаметр, мм", replyMarkup: Buttons.GetButtons6());
                 }
-                else if (message.Text == "12Х18Н10Т")
-                {
-                    data[2] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите диаметр, мм", replyMarkup: Buttons.GetButtons6());
-                }
-                else if (message.Text == "08Х13")
-                {
-                    data[2] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите диаметр, мм", replyMarkup: Buttons.GetButtons6());
-                }
-                else if (message.Text == "10Х17Н13М2Т")
-                {
-                    data[2] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите диаметр, мм", replyMarkup: Buttons.GetButtons6());
-                }
-                else if (message.Text == "12Х13")
-                {
-                    data[2] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите диаметр, мм", replyMarkup: Buttons.GetButtons6());
-                }
-                else if (message.Text == "12Х18Н12Т")
-                {
-                    data[2] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите диаметр, мм", replyMarkup: Buttons.GetButtons6());
-                }
-                else if (message.Text == "1-32")
+                else if (message.Text == "1-32." || message.Text == "33-65" || message.Text == "66-99" || message.Text == "100-134")
                 {
                     data[3] = message.Text;
                     await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите стенку, мм", replyMarkup: Buttons.GetButtons7());
                 }
-                else if (message.Text == "33-65")
-                {
-                    data[3] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите стенку, мм", replyMarkup: Buttons.GetButtons7());
-                }
-                else if (message.Text == "66-99")
-                {
-                    data[3] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите стенку, мм", replyMarkup: Buttons.GetButtons7());
-                }
-                else if (message.Text == "100-134")
-                {
-                    data[3] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите стенку, мм", replyMarkup: Buttons.GetButtons7());
-                }
-                else if (message.Text == "0,1-3,0")
+                else if (message.Text == "0,1-3,0" || message.Text == "3,1-6,0" || message.Text == "6,1-9,0" || message.Text == "9,1-12,0")
                 {
                     data[4] = message.Text;
                     await botClient.SendTextMessageAsync(message.Chat.Id, "Какой варинат для вас больше подходит?", replyMarkup: Buttons.GetButtons8());
                 }
-                else if (message.Text == "3,1-6,0")
-                {
-                    data[4] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Какой варинат для вас больше подходит?", replyMarkup: Buttons.GetButtons8());
-                }
-                else if (message.Text == "6,1-9,0")
-                {
-                    data[4] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Какой варинат для вас больше подходит?", replyMarkup: Buttons.GetButtons8());
-                }
-                else if (message.Text == "9,1-12,0")
-                {
-                    data[4] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Какой варинат для вас больше подходит?", replyMarkup: Buttons.GetButtons8());
-                }
-                else if (message.Text == "В метрах")
-                {
-                    data[5] = message.Text;
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Заявка отправляется");
-                    Writer.WriteZakaz();
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Заявка отправлена. Оставьте номер, чтобы мы с вами связались", replyMarkup: Buttons.GetButtons9());
-                }
-                else if (message.Text == "В тоннах")
+                else if (message.Text == "В метрах" || message.Text == "В тоннах")
                 {
                     data[5] = message.Text;
                     await botClient.SendTextMessageAsync(message.Chat.Id, "Заявка отправляется");
@@ -151,7 +79,7 @@ namespace TelegramBot
         async public static Task Gratitude(ITelegramBotClient botClient, Telegram.Bot.Types.Update update, CancellationToken token)
         {
             Message? message = update.Message;
-            await botClient.SendTextMessageAsync(message.Chat.Id, "Благодарим вас за заказ!");
+            await botClient.SendTextMessageAsync(message.Chat.Id, "Благодарим вас за заказ!", replyMarkup: Buttons.GetButtons());
         }
     }
 }

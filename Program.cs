@@ -6,27 +6,29 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 using System.Collections.Generic;
-using System.Threading;
 using Telegram.Bot.Exceptions;
 using Microsoft.Data.SqlClient;
 using System.Linq.Expressions;
-using Azure.Identity;
+using Timer = System.Timers.Timer;
+using System.Runtime.InteropServices;
 
 namespace TelegramBot
 {
     internal class Program
     {
-        private readonly static string token = "6104982128:AAFlG61y44DFOegDeIbslhSOSyEAK8WuU9U";
+        private readonly static string token = "";
         public static TelegramBotClient? client;
         public static string? phoneNumber;
         public static string? userName;
 
         static void Main(string[] args)
         {
+            SendEmail.Time();
             client = new TelegramBotClient(token);
             client.StartReceiving(HandleUpdateAsunc, HandlePollingErrorAsync);
             Console.ReadLine();
         }
+
 
         private static async Task HandleUpdateAsunc(ITelegramBotClient botClient, Telegram.Bot.Types.Update update, CancellationToken token)
         {

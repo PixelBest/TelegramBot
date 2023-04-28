@@ -56,7 +56,7 @@ namespace TelegramBot
             {
                 Keyboard = new List<List<KeyboardButton>>
                 {
-                    new List<KeyboardButton> { new KeyboardButton("1-32"), new KeyboardButton("33-65") },
+                    new List<KeyboardButton> { new KeyboardButton("1-32."), new KeyboardButton("33-65") },
                     new List<KeyboardButton> { new KeyboardButton("66-99"), new KeyboardButton("100-134") },
                     new List<KeyboardButton> { new KeyboardButton("В начало") }
                 },
