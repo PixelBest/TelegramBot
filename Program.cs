@@ -11,6 +11,7 @@ using Microsoft.Data.SqlClient;
 using System.Linq.Expressions;
 using Timer = System.Timers.Timer;
 using System.Runtime.InteropServices;
+using Email = EmailSender;
 
 namespace TelegramBot
 {
@@ -23,7 +24,7 @@ namespace TelegramBot
 
         static void Main(string[] args)
         {
-            SendEmail.Time();
+            Email.Program.Main();
             client = new TelegramBotClient(token);
             client.StartReceiving(HandleUpdateAsunc, HandlePollingErrorAsync);
             Console.ReadLine();
